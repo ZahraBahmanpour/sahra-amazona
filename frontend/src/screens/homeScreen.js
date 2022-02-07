@@ -2,9 +2,10 @@ import { useEffect, useReducer } from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Product from '../components/product';
+import Product from '../components/Product';
 import { Helmet } from 'react-helmet-async';
-import MessageBox from '../components/messageBox';
+import MessageBox from '../components/MessageBox';
+import LoadingBox from '../components/LoadingBox';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -45,7 +46,7 @@ function HomeScreen() {
       </Helmet>
       <h1>Featured Products</h1>
       <div className="products">
-        {loading && <loadingBox />}
+        {loading && <LoadingBox />}
         {error && <MessageBox variant="danger">{error}</MessageBox>}
         <Row>
           {products.map((p) => (
