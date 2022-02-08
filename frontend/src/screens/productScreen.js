@@ -1,5 +1,5 @@
 import { useContext, useEffect, useReducer } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
@@ -50,7 +50,7 @@ function ProductScreen() {
     fetchData();
   }, [slug]);
 
-  const { state, dispatch: ctxContext } = useContext(Store);
+  const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart } = state;
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((item) => item._id === product._id);
@@ -60,7 +60,7 @@ function ProductScreen() {
       window.alert('Product is out of stock');
       return;
     }
-    ctxContext({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    ctxDispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
     navigate('/cart');
   };
 

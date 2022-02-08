@@ -38,7 +38,7 @@ function HomeScreen() {
       // setProducts(result.data);
     };
     fetchData();
-  });
+  }, []);
   return (
     <div>
       <Helmet>
